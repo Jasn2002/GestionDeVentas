@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 public class Archivador {
 	/**
 	 * Crea un archivo con el nombre dado. Retorna true si se creo bien y falso si
-	 * ya existía. Puede mostrar un error y no funcionar correctamente si el archivo
+	 * ya existï¿½a. Puede mostrar un error y no funcionar correctamente si el archivo
 	 * en cuestion esta en uso.
 	 * 
 	 * @param ruta es la ruta donde se desea crear el archivo.
@@ -68,7 +68,7 @@ public class Archivador {
 	/**
 	 * Verifica si existe un en la ruta seleccionada.
 	 * 
-	 * @param la ruta del archivo.
+	 * @param ruta del archivo.
 	 * @return true si existe el archivo, false si no existe. *
 	 **/
 	public boolean existe(String ruta) {

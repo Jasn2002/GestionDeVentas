@@ -9,12 +9,6 @@ public class Modulo {
 	
 	private double cantidadDinero = 0;
 	
-
-	/**
-	 * Agregar saldo a la cuenta: Ingresa la cantidad que desea agregar a la cuenta y �ste se agrega solo si el monto es mayor a cero.
-	 * Una vez agregado el saldo, se actualiza el archivo Usuarios.txt 
-	 * @param sc Scanner
-	 * */
 	public void opcionUno() {
 		try { 
 		System.out.println("Ingrese la cantidad que desea agregar en su cuenta: ");
@@ -38,15 +32,6 @@ public class Modulo {
 	
 	}
 	
-	
-		
-	
-	
-	/**
-	 * Transferencia de dinero: ingresa la cantidad a transferir y el nombre del destinatario. Lleva a cabo la transaccion solo si 
-	 * la cantidad a transferir es mayor a cero y menor o igual al saldo del usuario. 
-	 * @param sc Scanner
-	 * */
 	public void opcionDos () {
 		
 		cantidadDinero = Usuarios.getInstance().getDiccionarioUsuarios().get(Menues.username).getCantidadDinero();
@@ -65,12 +50,6 @@ public class Modulo {
 		
 	}
 	
-	
-	/**
-	 * Retirar dinero de la cuenta. Se ingresa la cantidad de dinero que el usuario desea retira, y se lleva a cabo solo si el monto a retirar 
-	 * es menor o igual al saldo de la cuenta, y si es mayor a 0.
-	 * @param sc Scanner
-	 * */
 	public void opcionTres () {
 
 		System.out.println("Ingrese la cantidad que desea retirar de su cuenta: ");
@@ -91,9 +70,6 @@ public class Modulo {
 		
 	}
 	
-	/**
-	 * Devuelve el saldo del usuario logueado en el banco.
-	 * */
 	public void opcionCuatro() {
 		Menues.mostrarMensaje("Saldo: " + Usuarios.getInstance().getDiccionarioUsuarios().get(Menues.username).getCantidadDinero());
 	}

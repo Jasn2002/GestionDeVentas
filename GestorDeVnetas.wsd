@@ -1,0 +1,137 @@
+@startuml GestorDeVentas
+
+class Main{
+
+}
+
+class Usuarios{
+    - serialVersionUID : long
+    + RUTA : String
+
+    - Usuarios()
+    + getInstance() : Usuarios
+    + guardar() : void
+    + cargar() : void
+    + agregarUsuario() : boolean
+    + inicioSesion(String, String) : boolean
+    + public getUsuario (String) : Usuario
+    + usuarioExistente(String) : boolean
+    + transferencia(double, String) : void
+
+}
+
+class Usuario{
+    - nombre : String
+	- contrasenia : String
+	- tipoDeUsuario : String
+	- cantidadDinero : double
+
+    + Usuario (String, String, String, double)
+}
+
+class Menues{
+     + username : String
+     
+     + mostrarMensaje(String) : void
+     + mostrarMensajeEntrada(String) : String
+     + crearUsuario(String, String, String) : void
+     + iniciarSesion(String, String) : boolean
+     + empleadosOpcionUno () : void
+     + empleadosOpcionDos () : void
+     + empleadosOpcionTres () : void
+     + empleadosOpcionCuatro () : void
+     + empleadosOpcionCinco () : void
+     + clientesOpcionDos () : void
+     + clientesOpcionTres () : void
+     + clientesOpcionCuatro () : void
+     + clientesOpcionCinco () : void
+     + clientesOpcionSiete () : void
+     + moduloBancarioMenu () : void
+     + cerrarSesion() : boolean
+}
+
+class Modulo{
+    - cantidadDinero : double
+
+    + opcionUno () : void
+    + opcionDos () : void
+    + opcionTres () : void
+    + opcionCuatro () : void
+}
+
+class Articulos {
+    - serialVersionIUD : long
+    - codigoDeArticulo  : String
+    - nombreDescriptivo : String
+    - precio : double
+    - cantidadDeArticulos : int
+
+    + Articulos(String, String, double, int)
+
+}
+
+class Carrito{
+    - singleton : Carrito
+    - codigo : String
+    - cantidadArticulosEnCarrito : int
+
+    + getInstance() : Carrito
+    - Carrito()
+    + agregarArticulo(String, int) : boolean
+    + removerArticulo(String) : void
+    + totalCarrito() : double
+    + verArticulosCarrito() : void
+    + confirmarCompra() : void
+}
+
+class Stock {
+    - serialVersionIUD : long
+    - singleton : Stock
+    - RUTASTOCK : String
+    - cantidadArticulosEnStock : int
+
+    + getInstance() : Stock
+    - Stock ()
+    + guardar()
+    + cargar()
+    - getListaDeArticulos : HashMap
+    + add(String, String, double, int)
+    + verArticulos : void
+    + verCantidad : int
+    + empleadosOpcionTres (String) : void
+}
+
+class Archivador {
+    + createFile (String) : boolean
+    + load(String) : Object
+    + save : void
+    + existe (String) : boolean
+}
+
+class Login{
+    - tipoDeUsuario : String
+
+    + Login()
+    - cambiarVentana(String) : void
+}
+
+class InterfazClientes{
+    + InterfazClientes()
+}
+
+class InterfazEmpleados{
+    + InterfazEmpleados()
+}
+
+Main "1" *-- "1" Articulos
+Main "1" *-- "1" Carrito
+Main "1" *-- "1" Stock
+Main "1" *-- "1" Usuarios
+Main "1" *-- "1" Menues
+Main "1" *-- "1" Login
+Main "1" *-- "1" Archivador
+Usuarios "1" *-- "*" Usuario
+Menues "1" *-- "1" Modulo
+Login "1" *-- "1" InterfazClientes
+Login "1" *-- "1"  InterfazEmpleados
+@enduml
