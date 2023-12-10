@@ -108,30 +108,12 @@ class Archivador {
     + existe (String) : boolean
 }
 
-class Login{
-    - tipoDeUsuario : String
-
-    + Login()
-    - cambiarVentana(String) : void
-}
-
-class InterfazClientes{
-    + InterfazClientes()
-}
-
-class InterfazEmpleados{
-    + InterfazEmpleados()
-}
-
 Main "1" *-- "1" Articulos
 Main "1" *-- "1" Carrito
 Main "1" *-- "1" Stock
 Main "1" *-- "1" Usuarios
 Main "1" *-- "1" Menues
-Main "1" *-- "1" Login
 Main "1" *-- "1" Archivador
 Usuarios "1" *-- "*" Usuario
-Menues "1" *-- "1" Modulo
-Login "1" *-- "1" InterfazClientes
-Login "1" *-- "1"  InterfazEmpleados
+Menues "1" <|-- "1" Modulo
 @enduml
