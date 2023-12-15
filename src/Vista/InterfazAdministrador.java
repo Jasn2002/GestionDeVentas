@@ -19,8 +19,8 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
     JButton botonOpcion3 = new JButton("Ver Registros");
     JButton botonOpcion4 = new JButton("Listar Usuarios");
     JButton botonOpcion5 = new JButton("Eliminar Registros");
-    /*JButton botonOpcion6 = new JButton("Modulo Bancario");
-    JButton botonOpcion7 = new JButton("Cerrar Sesion");*/
+    JButton botonOpcion6 = new JButton("Listar Cuentas");
+    JButton botonOpcion7 = new JButton("Eliminar Cuentas");
 
     public InterfazAdministrador(){
     //FRAME SETUP
@@ -39,8 +39,8 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
     botonOpcion3.addActionListener(this);
     botonOpcion4.addActionListener(this);
     botonOpcion5.addActionListener(this);
-    /*botonOpcion6.addActionListener(this);
-    botonOpcion7.addActionListener(this);*/
+    botonOpcion6.addActionListener(this);
+    botonOpcion7.addActionListener(this);
     
     this.add(mainPanel);
     mainPanel.add(botonOpcion1);
@@ -48,8 +48,8 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
     mainPanel.add(botonOpcion3);
     mainPanel.add(botonOpcion4);
     mainPanel.add(botonOpcion5);
-    /*mainPanel.add(botonOpcion6);
-    mainPanel.add(botonOpcion7);*/
+    mainPanel.add(botonOpcion6);
+    mainPanel.add(botonOpcion7);
     this.setVisible(true);
     }
 
@@ -73,12 +73,13 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
         if(e.getSource()== botonOpcion5){
             new Archivos().borrarDatosRegistro();
         }
-        /*if(e.getSource()== botonOpcion6){
-            Menues.moduloBancarioMenu();
+        if(e.getSource()== botonOpcion6){
+            new GestorDeVentas().listarCuentas();
         }
         if(e.getSource()== botonOpcion7){
-            this.dispose();
-        }*/
+            new Archivos().borrarDatosCuenta();
+            new Interfaz().MostrarMensaje("La lista de cuentas bancarias ha sido eliminada");
+        }
 
     }
     

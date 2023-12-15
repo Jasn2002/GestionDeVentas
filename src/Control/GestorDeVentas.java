@@ -6,6 +6,7 @@ import Almacen.Carrito;
 import Articulos.Articulo;
 import Compra.Registro;
 import CuentaBancaria.CuentaBancaria;
+import CuentaBancaria.CuentaMLC;
 import Usuario.*;
 import Vista.InterfazAdministrador;
 import Vista.InterfazClientes;
@@ -107,6 +108,23 @@ public void listarRegistros(){
 
     new Interfaz().MostrarMensaje(s);
 }
+
+public void listarCuentas(){
+    ArrayList<CuentaBancaria> listaCuentas = new Archivos().leerDatosCuenta();
+    String s = "";
+    for (CuentaBancaria cuenta : listaCuentas) {
+        String temp = "\n";
+        temp =temp +  "Propietario: " + cuenta.getPropietario() + "\n";
+        temp = temp +"Balance: " +  cuenta.getBalance() + "\n";
+        temp += "Tipo de Cuenta: ";
+        if (cuenta instanceof CuentaMLC){temp += "MLC\n";}
+        else {temp += "CUP\n";}
+        s += temp; 
+    }
+
+    new Interfaz().MostrarMensaje(s);
+}
+
 
 public static Usuario EncontrarUsuario(String nombre, String contraseña){
 
