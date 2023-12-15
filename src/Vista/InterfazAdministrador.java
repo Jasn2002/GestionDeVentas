@@ -24,7 +24,7 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
 
     public InterfazAdministrador(){
     //FRAME SETUP
-	this.setTitle("Gestor de Ventas - Clientes");
+	this.setTitle("Gestor de Ventas - Administrador");
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setResizable(false);
     this.setLayout(null);
