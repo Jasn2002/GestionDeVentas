@@ -1,119 +1,128 @@
 @startuml GestorDeVentas
 
-class Main{
+class GestorDeVentas{
+    - usuarioActual : String[]
+    - carrito : Carrito;
 
-}
-
-class Usuarios{
-    - serialVersionUID : long
-    + RUTA : String
-
-    - Usuarios()
-    + getInstance() : Usuarios
-    + guardar() : void
-    + cargar() : void
-    + agregarUsuario() : boolean
-    + inicioSesion(String, String) : boolean
-    + public getUsuario (String) : Usuario
-    + usuarioExistente(String) : boolean
-    + transferencia(double, String) : void
-
+    + RegistrarUsuario() : void
+    + Login() : boolean
+    - UsuarioExiste() : boolean
+    + listarUsuarios() : void
+    + listarRegistros() : void
+    + EncontrarUsuario() : Usuario
+    + EncontrarCuenta() : CuentaBancaria
 }
 
 class Usuario{
     - nombre : String
-	- contrasenia : String
-	- tipoDeUsuario : String
-	- cantidadDinero : double
+    - contraseña : String
 
-    + Usuario (String, String, String, double)
+    + Usuario()
+
 }
 
-class Menues{
-     + username : String
-     
-     + mostrarMensaje(String) : void
-     + mostrarMensajeEntrada(String) : String
-     + crearUsuario(String, String, String) : void
-     + iniciarSesion(String, String) : boolean
-     + empleadosOpcionUno () : void
-     + empleadosOpcionDos () : void
-     + empleadosOpcionTres () : void
-     + empleadosOpcionCuatro () : void
-     + empleadosOpcionCinco () : void
-     + clientesOpcionDos () : void
-     + clientesOpcionTres () : void
-     + clientesOpcionCuatro () : void
-     + clientesOpcionCinco () : void
-     + clientesOpcionSiete () : void
-     + moduloBancarioMenu () : void
-     + cerrarSesion() : boolean
+class Empleado{
+
+    + Empleado()
 }
 
-class Modulo{
-    - cantidadDinero : double
+class Cliente{
+    - cuenta : CuentaBancaria
 
-    + opcionUno () : void
-    + opcionDos () : void
-    + opcionTres () : void
-    + opcionCuatro () : void
+    + Cliente()
 }
 
-class Articulos {
-    - serialVersionIUD : long
-    - codigoDeArticulo  : String
-    - nombreDescriptivo : String
-    - precio : double
-    - cantidadDeArticulos : int
+class CuentaBancaria{
+    - propietario : String
+    - balance : double
 
-    + Articulos(String, String, double, int)
+    + CuentaBancaria()
+    + AñadirSaldo() : void
+    + SustraerSaldo() : void
+}
+
+class CuentaMLC {
+    
+    + CuentaMLC()
+    + ConvertirAcup() : double
+    + ConvertirAmlc() : double
+    + AñadirSaldo() : void
+    + SustraerSaldo() : void
 
 }
 
 class Carrito{
-    - singleton : Carrito
-    - codigo : String
-    - cantidadArticulosEnCarrito : int
+    - listaArticulos : ArrayList
 
-    + getInstance() : Carrito
-    - Carrito()
-    + agregarArticulo(String, int) : boolean
-    + removerArticulo(String) : void
-    + totalCarrito() : double
-    + verArticulosCarrito() : void
-    + confirmarCompra() : void
+    + AñadirArticulo() : void
+    + CrearCompra() : void
+    + EncontrarArticulo() : Articulo
+    + ArticuloExiste : boolean
+    + listarArticulos : void
 }
 
-class Stock {
-    - serialVersionIUD : long
-    - singleton : Stock
-    - RUTASTOCK : String
-    - cantidadArticulosEnStock : int
+class Almacen {
+    - listaArticulos : ArrayList
 
-    + getInstance() : Stock
-    - Stock ()
-    + guardar()
-    + cargar()
-    - getListaDeArticulos : HashMap
-    + add(String, String, double, int)
-    + verArticulos : void
-    + verCantidad : int
-    + empleadosOpcionTres (String) : void
+    + Almacen()
+    + RegistrarArticulo() : void
+    + listarArticulos() : void
+    + EncontrarArticulo() : Articulo
+    - ArticuloExiste() : boolean 
 }
 
-class Archivador {
-    + createFile (String) : boolean
-    + load(String) : Object
-    + save : void
-    + existe (String) : boolean
+class Archivos {
+    + GuardarDatos() : void
+    + leerDatosCuenta() : ArrayList
+    + leerDatosRegistro() : ArrayList
+    + leerDatosUsuario() : ArrayList
+    + leerDatosArticulo() : ArrayList
 }
 
-Main "1" *-- "1" Articulos
-Main "1" *-- "1" Carrito
-Main "1" *-- "1" Stock
-Main "1" *-- "1" Usuarios
-Main "1" *-- "1" Menues
-Main "1" *-- "1" Archivador
-Usuarios "1" *-- "*" Usuario
-Menues "1" <|-- "1" Modulo
+class Compra {
+    - articulosComprados : ArrayList
+    - comprador : Cliente
+    - costoTotal : double
+
+    + Compra()
+    + ProcesarCompra() : void
+    - CompraViable : boolean
+    - SustraerArticulos() : void
+
+}
+
+class Registro{
+    - fecha : String
+
+    + Registro()
+}
+
+class Articulo{
+    - nombre : String
+    - descripcion : String
+    - id : int
+    - precio : double
+    - cantidadEnAlmacen : int
+
+    + Articulo()
+    }
+
+class Calzado{
+    - talla : String
+
+    + Calzado()
+}
+
+GestorDeVentas "1" *-- "1" Almacen
+Almacen <|--- Carrito
+Almacen "1" *-- "*" Articulo
+Articulo <|--- Calzado
+GestorDeVentas "1" *-- "*" Usuario
+Usuario <|--- Cliente
+Usuario <|--- Empleado
+GestorDeVentas "1" *-- "*" Compra
+Compra <|--- Registro
+Usuario "1" *-- "1" CuentaBancaria
+CuentaBancaria <|--- CuentaMLC
+GestorDeVentas "1" *-- "1" Archivos
 @enduml

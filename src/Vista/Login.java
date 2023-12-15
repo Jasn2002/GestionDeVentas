@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,8 +17,7 @@ import javax.swing.JRadioButton;
 //import javax.swing.border.Border;
 import javax.swing.JTextField;
 
-import Usuario.Usuarios;
-import Util.Menues;
+import Control.GestorDeVentas;
 
 public class Login extends JFrame implements ActionListener{
 
@@ -31,6 +31,8 @@ public class Login extends JFrame implements ActionListener{
     JTextField usuarioTextField = new JTextField();
 
     String tipoDeUsuario = "";
+    
+    GestorDeVentas g = new GestorDeVentas();
 
     public Login(){
 		//FRAME SETUP
@@ -49,12 +51,13 @@ public class Login extends JFrame implements ActionListener{
         JPanel loginPanel = new JPanel();
         loginPanel.setBackground(Color.WHITE);
         loginPanel.setLayout(new GridLayout(0, 1));
+        loginPanel.setBorder(BorderFactory.createEtchedBorder());
         loginPanel.setBounds(100, 150, 400, 200);
 
         JLabel loginLabel = new JLabel("LOGIN");
         loginLabel.setForeground(Color.BLUE);
         loginLabel.setFont(new Font("Mv Boli", Font.PLAIN, 70));
-        loginLabel.setBackground(Color.WHITE);
+        //loginLabel.setBackground(Color.LIGHT_GRAY);
         loginLabel.setOpaque(true);
         //loginLabel.setBorder(border);
         loginLabel.setVerticalAlignment(JLabel.TOP);
@@ -102,24 +105,16 @@ public class Login extends JFrame implements ActionListener{
            //System.out.println(tipoDeUsuario);
         }
         if(e.getSource()== botonRegistrarse){
-            Menues.crearUsuario(usuarioTextField.getText(), passwordTextField.getText(), this.tipoDeUsuario);
-            this.dispose();
-            cambiarVentana(Usuarios.getInstance().getUsuario(usuarioTextField.getText()).getTipoDeUsuario());
+            boolean esCliente = false;
+            if (tipoDeUsuario == "Cliente"){esCliente = true;}
+            g.RegistrarUsuario(usuarioTextField.getText(), passwordTextField.getText(), esCliente);
+            //this.dispose();
         }
+        
         if(e.getSource()== botonLogIn){
             //System.out.println(usuarioTextField.getText() +" "+ passwordTextField.getText());
-            if(Menues.iniciarSesion(usuarioTextField.getText(), passwordTextField.getText())){
-            this.dispose();}
-           cambiarVentana(Usuarios.getInstance().getUsuario(usuarioTextField.getText()).getTipoDeUsuario());}
+            if(g.Login(usuarioTextField.getText(), passwordTextField.getText())) this.dispose();
+        }
     }
 
-    private void cambiarVentana(String tipoDeUsuario){
-        System.out.println("Tipo de Usuario: " + tipoDeUsuario);
-        if(tipoDeUsuario.equals("cliente")){
-            new InterfazClientes();
-        }
-        if(tipoDeUsuario.equals("empleado")){
-            new InterfazEmpleados();
-        }
-    }
 }

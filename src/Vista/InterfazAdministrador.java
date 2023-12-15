@@ -6,25 +6,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Almacen.Almacen;
 import Control.Archivos;
 import Control.GestorDeVentas;
 import Control.Interfaz;
-import CuentaBancaria.CuentaBancaria;
-import Usuario.Cliente;
 
-public class InterfazClientes extends JFrame implements ActionListener {
+public class InterfazAdministrador extends JFrame implements ActionListener {
 
-    JButton botonOpcion1 = new JButton("Ver lista de articulos");
-    JButton botonOpcion2 = new JButton("Añadir articulo al carrito");
-    JButton botonOpcion3 = new JButton("Añadir Saldo");
-    JButton botonOpcion4 = new JButton("Ver carrito");
-    JButton botonOpcion5 = new JButton("Confirmar compra");
+    JButton botonOpcion1 = new JButton("Eliminar usuarios");
+    JButton botonOpcion2 = new JButton("Eliminar articulos");
+    JButton botonOpcion3 = new JButton("Ver Registros");
+    JButton botonOpcion4 = new JButton("Listar Usuarios");
+    JButton botonOpcion5 = new JButton("Eliminar Registros");
+    /*JButton botonOpcion6 = new JButton("Modulo Bancario");
+    JButton botonOpcion7 = new JButton("Cerrar Sesion");*/
 
-    public InterfazClientes(){
+    public InterfazAdministrador(){
     //FRAME SETUP
 	this.setTitle("Gestor de Ventas - Clientes");
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +39,8 @@ public class InterfazClientes extends JFrame implements ActionListener {
     botonOpcion3.addActionListener(this);
     botonOpcion4.addActionListener(this);
     botonOpcion5.addActionListener(this);
+    /*botonOpcion6.addActionListener(this);
+    botonOpcion7.addActionListener(this);*/
     
     this.add(mainPanel);
     mainPanel.add(botonOpcion1);
@@ -48,32 +48,37 @@ public class InterfazClientes extends JFrame implements ActionListener {
     mainPanel.add(botonOpcion3);
     mainPanel.add(botonOpcion4);
     mainPanel.add(botonOpcion5);
+    /*mainPanel.add(botonOpcion6);
+    mainPanel.add(botonOpcion7);*/
     this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== botonOpcion1){
-            new Almacen().listarArticulos();
+            new Archivos().borrarDatosUsuario();
+            new Interfaz().MostrarMensaje("La lista de usuarios ha sido eliminada");
             
         }
         if(e.getSource()== botonOpcion2){
-            new Interfaz().ComprarArticulo();
-
+            new Archivos().borrarDatosArticulo();
+            new Interfaz().MostrarMensaje("La lista de articulos ha sido eliminada");
         }
         if(e.getSource()== botonOpcion3){
-            Cliente usuarioActual = GestorDeVentas.getUsuarioActual();
-            CuentaBancaria cuenta = usuarioActual.getCuenta();
-            cuenta.AñadirSaldo(new Double(JOptionPane.showInputDialog("Ingrese la cantidad que desee depositar: ")));
-            new Archivos().guardarDatos(cuenta, false);
-            
+            new GestorDeVentas().listarRegistros();
         }
         if(e.getSource()== botonOpcion4){
-            GestorDeVentas.getCarrito().listarArticulos();
+            new GestorDeVentas().listarUsuarios();
         }
         if(e.getSource()== botonOpcion5){
-            GestorDeVentas.getCarrito().CrearCompra();
+            new Archivos().borrarDatosRegistro();
         }
+        /*if(e.getSource()== botonOpcion6){
+            Menues.moduloBancarioMenu();
+        }
+        if(e.getSource()== botonOpcion7){
+            this.dispose();
+        }*/
 
     }
     
