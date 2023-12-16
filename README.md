@@ -50,7 +50,7 @@ Este es el Proyecto Final de la asignatura Diseño y Programacion Orientada a Ob
 
   ### Jose Alejandro Sosa
 
-  La clase "CuentaBancaria" se encarga de gestionar el presupuesto con el que cuenta cada cliente. Se asegura que cada usuario tenga una unica cuenta. Esta permite realizar operaciones de ingreso de capital asi como su sustraccion para realizar las compras. Es posible ampliar su utilidad para diferentes tipos de moneda, como se puede observar en el ejemplo "CuentaMLC".
+  La clase "CuentaBancaria" se encarga de gestionar el presupuesto con el que cuenta cada cliente. Se asegura que cada usuario tenga una unica cuenta. Esta permite realizar operaciones de ingreso de capital asi como su sustraccion para realizar las compras. Es posible ampliar su utilidad para diferentes tipos de moneda, como se puede observar en el ejemplo "CuentaMLC". El programa permite al administrador del mismo crear, modificar y eliminar las cuentas de cada usuario, asi como llevar un listado de todas las existentes.
 
 
  
