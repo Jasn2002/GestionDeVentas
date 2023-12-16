@@ -62,6 +62,16 @@ public class Archivos {
         }
     }
 
+    public void guardarLista(ArrayList<CuentaBancaria> a, boolean rescribir) {
+        ArrayList<CuentaBancaria> c = a;
+        if (c == null) c = new ArrayList<CuentaBancaria>();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Archivo/Cuenta.txt", rescribir))) {
+            oos.writeObject(c);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<CuentaBancaria> leerDatosCuenta() {
         String archivo = "src/Archivo/Cuenta.txt";

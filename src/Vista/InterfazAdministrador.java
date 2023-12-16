@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import Control.Archivos;
 import Control.GestorDeVentas;
 import Control.Interfaz;
+import CuentaBancaria.InterfazBancaria;
 
 public class InterfazAdministrador extends JFrame implements ActionListener {
 
@@ -19,7 +20,7 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
     JButton botonOpcion3 = new JButton("Ver Registros");
     JButton botonOpcion4 = new JButton("Listar Usuarios");
     JButton botonOpcion5 = new JButton("Eliminar Registros");
-    JButton botonOpcion6 = new JButton("Listar Cuentas");
+    JButton botonOpcion6 = new JButton("Administrar Cuentas");
     JButton botonOpcion7 = new JButton("Eliminar Cuentas");
 
     public InterfazAdministrador(){
@@ -74,7 +75,7 @@ public class InterfazAdministrador extends JFrame implements ActionListener {
             new Archivos().borrarDatosRegistro();
         }
         if(e.getSource()== botonOpcion6){
-            new GestorDeVentas().listarCuentas();
+            new InterfazBancaria();
         }
         if(e.getSource()== botonOpcion7){
             new Archivos().borrarDatosCuenta();
